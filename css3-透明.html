@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+body{font-family: "Microsoft Yahei";}
+    .box{ padding: 15px; margin: 50px; border: 1px solid #e0e0e0;}
+    .box h3{  background-color: #e0e0e0; height: 35px; line-height: 35px; padding: 0 25px; font-size: 18px;}
+    .tr img{ opacity: 0.5;filter:alpha(opacity=50);}
+    .tr-c{ width: 100px; height: 100px;
+     background-color: rgba(255,0,0,.5);
+    background-color: rgb(255,0,0)\0;    
+    *background-color: rgb(255,0,0);}
+    .t-s{ font-size: 18px; font-family: "Microsoft Yahei";  background-color: #f80; width: 220px; height: 50px; line-height: 50px; padding: 20px; text-align: center; color: #fff; cursor: pointer; border-radius: 50px; }
+    .t-s:hover{ background-color: #f60; text-shadow:0px 1px 1px red;}
+    .t2{ color: #999; font-size: 50px; text-shadow: 0px 1px 0px #fff;}
+    .bg-gray{ background-color: #ccc;}
+    .t3{color: #999; font-size: 50px; text-shadow: 0px -1px 0px #fff;}
+    .t-break{ border: 1px solid red; width: 250px; word-wrap:break-word;}
+    .t-o{ height: 25px; line-height: 25px; border: 1px solid gray; width: 250px;  white-space: nowrap; overflow: hidden; text-overflow:ellipsis; }
+</style>
+</head>
+<body>
+<div class="box">
+<h3>透明</h3>
+    <p class="tr"><img src="images/love.jpg" alt=""></p>
+    <div class="tr-c"></div>
+</div>
+<div class="box bg-gray">
+<h3>文字阴影</h3>
+   <h4 class="t-s">我是一段文本</h4>
+   <h4 class="t2">我是一个文字</h4>
+    <h4 class="t3">我是一个文字</h4>
+  
+</div>
+
+<div class="box ">
+<h3>自动换行</h3>
+  <p class="t-break"> wo shi yi ge heehehehehehehehehehehheheheheheheheheheehehehch 多长的单词wo shi yi gewo shi yi gewo shi yi gewo shi yi gewo shi yi gewo shi yi gewo shi yi gewo shi yi gewo shi yi gewo shi yi gewo shi yi gewo shi yi gewo shi yi gewo shi yi gewo shi yi gewo shi yi gewo shi yi gewo shi yi ge</p>
+    <h4 class="t3">我是一个文字</h4>
+  
+</div>
+
+<div class="box ">
+<h3>文字隐藏 text-overflow</h3>
+  <p class="t-o">我是一行文字</p>
+   <p class="t-o">我是一行很长很长很长很长很长很长很长很长的文字</p>
+    <p class="t-o">我是一行还是还是还是还是还是文字</p>
+  
+</div>
+</body>
+</html>

@@ -1,0 +1,274 @@
+	元素的宽度：内容（content）+内补丁（padding  边框到内容间的宽度）+边框的宽度
+		    500		   +100*2+10*2=720px
+
+	元素和元素间（边框和边框间）垂直的距离是 取两个元素的 margin值中最大的值
+	元素和元素间（边框和边框间）水平的距离是 取两个元素的 margin值的和
+
+	padding（内补丁）：边框到自己的内容（文字，子元素）之间的距离
+	margin：
+		情况一： [兄弟元素] 自己 和兄弟元素间的距离 横向margin相加 纵向margin取最大值
+		情况二： [父亲元素] 和父亲元素的距离 父亲padding+子元素的margin  100+70=170
+
+	要想父亲元素和子元素产生距离可以用两种方法
+	一、用父亲元素的padding 注意 用这种方法（会增加父亲元素的大小）
+	二、用子元素的margin   注意 用这种方法（每一个子元素都要设置同样的margin）
+	三、用父亲元素的padding +用子元素的margin
+
+
+
+
+先声明的浮动元素有优先靠近父元素左上角或者右上角（规则2）位置的权利
+
+如果有多个相同方向的浮动元素，浮动元素也会尽可能的靠近左上角或者右上角，直到父元素宽度没法放下这个元素的时候，这个元素才会被挤下去。
+
+
+
+css 选择器 
+
+*  统配符      所有					0.5
+   标签        p，div  代表选择网页中的一种标签		1
+#id id选择器	网页中一个id名唯一的元素  		100 
+.类   类选择器	网页中的一类 取class=“”；		10
+A，B   并列选择器  代表  选择器A和B使用一样的css	a的权重 |B的权重
+A B   包含选择器   代表	 选择器B必须被选择器A包含	a的权重 +B的权重
+
+标签A.B  代表B必须满足标签A				B的权重
+ color：red ！important;				!important 权重最高
+
+
+
+<link type="text/css" rel="stylesheet" href="reset.css"> 外链 样式
+@ import url('reset.css'); 导入样式
+<style type="text/css"></style> 内嵌样式
+<div  style="border:1px solid red"> 行内样式 >
+优先级别   一般 行内样式  > 内嵌样式>外链
+	   离内容越近 优先级别越高
+
+
+font：样式  粗细    大小 /行高  字体
+font：normal bold   24px/1.8em  ‘microsoft Yahei';
+
+font-family:	字体
+font-size	大小
+font-style	样式      normal   italic
+font-weight	粗细	  bold bolder lighter   100-900
+
+
+text-transform	文字转换	lowercase uppercase   capitalize    小写  大写  首字母打写		
+text-decoration 文字的装饰	overline underline none line-through     上线  下线 没有  删除
+text-indent	文字缩进	
+text-align	对齐		center   right   left   justify
+line-height	行高
+letter-spacing  字母间距 汉字间距
+word-spacing	单词间距
+
+------------------------------------css的继承 
+css中子元素会继承父亲元素的文本样式  但是  a不会继承color decoration   em 不继承 font-style
+h1-h6 不会继承 font-weight font-size
+
+------------------------------------一个元素的实际宽度
+内容+内补丁+边框的宽度
+
+内补丁 padding   边框到自己内容（文字或者子元素）的距离
+外补丁 margin	  1 自己的边框到兄弟元素的距离 
+		  2 自己的边框到父亲元素的左上角的距离
+兄弟元素间的 距离横向  margin相加
+                  纵向	取最大值
+
+子元素和父亲元素有一段距离：1   父亲元素设置padding	（会增加父亲元素的大小 只用设置一次）
+		            2    子元素设置margin	（父亲的每一个子元素都要设置）
+			    3   父亲元素padding+子元素margin
+
+行内元素可以设置宽高吗？ 不可以
+行内元素可以设置padding ？
+行内元素可以设置margin  marin 上下   和margin 左右都可以设置吗？
+
+
+块级元素默认的宽是父亲元素的宽
+        默认占一行
+浮动后  宽度不在占一行，兄弟元素会占居它的位置  兄弟元素的文本会 留出 它实际的宽度
+        浮动元素自己靠父亲元素的左边（float：left） 右边（float：right）排列
+ 父亲元素的高度由子元素的高度决定  如果浮动后不再参与父亲元素的高度计算
+如果父亲元素所有的子元素都浮动了，父亲元素就没有高度了
+给父亲元素添加 clearfix  这个class
+.clearfix:after{ content:""; display:block; clear:both; height:0px; visibility:hidden;}
+
+
+1、对于它的父元素来说，浮动元素是不存在的
+   对于兄弟元素也认为它不存在   兄弟元素会占居它的位置  兄弟元素的文本会 留出 它实际的宽度
+
+2、一个浮动元素的位置会尽可能的靠近他父元素的左上角或者右上角
+	float: left的元素会尽量靠近父元素的左上角
+        float: right的元素会尽量靠近父元素的右上角
+3、浮动元素前面定义的元素会把浮动元素挤到下面
+   但是如果浮动元素前面有相邻元素的话，不管是inline的或者block的，都会把浮动元素挤到下面
+4、先声明的浮动元素有优先靠近父元素左上角或者右上角（规则2）位置的权利
+5、规则2的拓展
+   如果有多个相同方向的浮动元素，浮动元素也会尽可能的靠近左上角或者右上角，直到父元素宽度没法放下这个元素的时候，这个   元素才会被挤下去。
+6、inline元素添加浮动属性会拥有block特性（可以添加宽高等。）
+   浮动元素不会跑出父元素的边界
+
+行内元素 默认不能设置宽高 能设置margin 左右不能设置margin 上下   可以设置padding
+
+
+BFC
+BFC(Block formatting context)
+直译为"块级格式化上下文"。
+它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。
+
+
+计算BFC的高度时，浮动元素也参与计算
+BFC的区域不会与float box重叠。
+
+Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠
+不同的bfc 这不会发生重叠
+
+BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。
+
+
+-------------------标签嵌套错误
+1 注释写好
+<div class="container"></div>
+<div class="content">
+
+-------------------掉标签
+<div class=“”>
+
+-------------------掉双引号
+a href=“ 
+
+----------------------dw sublime  看颜色不
+
+
+
+--------------css 注释 /**/
+html 注释<!-- -->
+
+.container
+
+<div class="container">
+
+
+
+
+html5 		标签
+
+header   	页眉
+section   	定义片段
+article		文章
+aside   	页边栏
+figure  	定义媒体或文章
+figcaption  	 定义figure的标题
+nav     	导航
+footer  	页脚
+time    	时间或日期
+main   		主要的
+hgroup		标题组
+detail		细节
+
+--------------------------CSS选择器
+----------------基本选择
+
+*	所有		*  		选择页面中所有的元素
+.	一类		.text-center	选择页面中class为text-center的元素
+#      唯一id		#first		选择页面中id="first"
+标签    标签            div  		选择页面中所有div元素
+
+--------------层次选择器（ie6不支持）
+空格    后代元素	ul li		选择ul的li子孙元素（ie6支持）
+>	之间子元素	ul>li		选择ul 的直接子元素li
++      后面的第一个兄弟元素  h3+ul	选择h3后面的第一个ul兄弟元素
+~	后面的所有兄弟元素   h3~ul	选择h3后面所有的ul兄弟元素
+
+-------------过滤选择器（ie9以下浏览器不支持）
+--基本过滤选择
+
+:first-letter	第一个字母	h3：first-letter	选择第一个字
+:first-line	第一行		p：first-line		p的第一行
+::selection	选择的文本	
+:empty		 选择空的元素
+
+-子元素过滤
+:first-child	第一个子元素	ul li：first-child    选择ul的第一个子元
+				（必须是ul的第一个子元素 还必须是li）
+:last-child	最后一个子元素	ul li：last-child     选择ul的最后一个子元 
+：first-of-type  第一个该类型的子元素  ul li：fist-of-type  选择ul 的第一个li元素
+				（只要是ul的第一个li元素就可以了（不要求是第一个子元素））
+：last-of-type  最后一个该类型的子元素  ul li：fist-of-type  选择ul 的 最后一个li元素
+：nth-child（n）第n个子元素 
+		一：数字      ul li：nth-child（2） 必须ul的第二个子元素 还是li标签
+		二：数字+n    ul li：nth-child（2n）必须ul的第二的倍数子元素 还是li标签
+		二：数字n+数字    ul li：nth-child（2n+1）必须ul的第二的倍数子元素 还是li标签	
+：nth-of-type（n）第n个该类型子元素 
+		一：数字      ul li：nth-of-type（2） ul里面第二个li（不要求是第二个子元素）
+		二：数字+n    ul li：nth-of-type（2n）ul里面是二的倍数的li
+		二：数字n+数字    ul li：nth-child（2n+2）
+：nth-last-child（n） 从后面数
+：nth-last-of-type（n）	从后面数
+：only-child	只有一个子元素	 div p：only-chlid	div里面只有一个p元素 不能有其他元素
+：only-of-type	只有一个子元素	 div p：only-of-type	div里面只有一个p元素 可以有其他元素
+
+--表单选择过滤器
+
+gitHub  版本协作工具
+
+repository 仓库 、项目
+repositories 
+
+create  添加项目
+refresh 刷新
+
+publish 发布到服务器
+
+branch  分支
+master  主分支
+tools   工具
+unsynced commits 没有同步的发布
+uncommitted changes 没有发布 的变化
+
+insync 是同步的。
+
+
+------------------------背景总结：
+1 background-size：背景图片的大小
+	 值： 百分比 auto 尺寸 cover （覆盖）
+2 background-origin：背景从哪儿开始
+	 值：border-box 边框  padding-box padding   content-box 内容开始
+3 background-image：url（），url（）；多重背景
+
+4 background-clip： 背景从哪显示区域 （背景剪切）
+        值 值：border-box 边框  padding-box padding   content-box 内容显示
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
